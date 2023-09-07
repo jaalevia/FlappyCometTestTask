@@ -13,9 +13,9 @@ public class Coin : MonoBehaviour
         Vector3 newpos = transform.position += ((Vector3.left * speed) * Time.deltaTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision2D)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision2D.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
         }

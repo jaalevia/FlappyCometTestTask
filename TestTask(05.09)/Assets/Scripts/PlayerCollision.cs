@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCollision : MonoBehaviour
 {
@@ -16,12 +17,17 @@ public class PlayerCollision : MonoBehaviour
         if (collision2D.gameObject.tag == "Enemy")
         {
             Destroy(gameObject);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        if (collision2D.gameObject.tag == "Coin")
+
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Coin")
         {
             score += 1;
             textMeshPro.text = score.ToString();
+            
         }
-
     }
 }
