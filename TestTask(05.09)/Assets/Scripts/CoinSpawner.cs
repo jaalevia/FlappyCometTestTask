@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class CoinSpawner : MonoBehaviour
 {
-    private float[] queueTime = new float[] {1.5f, 3, 5 };
-    
+    private float[] queueTime = new float[] {1, 3, 6, 9};
+
     private float time = 0;
-    public GameObject[] obstacle = new GameObject[2];
+    public GameObject obstacle;
 
     public float height;
     float a;
@@ -19,20 +18,19 @@ public class Spawner : MonoBehaviour
     }
     void Update()
     {
-       
+
         if (time > a)
         {
             a = queueTime[Random.Range(0, queueTime.Length)];
-            GameObject go = Instantiate(obstacle[Random.Range(0, obstacle.Length)]);
+            GameObject go = Instantiate(obstacle);
             go.transform.position = transform.position + new Vector3(0, Random.Range(-height, height), 0);
 
             time = 0;
 
-            Destroy(go, 10);
-            
+            Destroy(go, 20);
+
         }
         time += Time.deltaTime;
 
     }
-
 }
